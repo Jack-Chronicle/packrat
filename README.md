@@ -1,10 +1,5 @@
 # **Packrat** 🐀
 
-![](./packrat.gif)
-
-> [!NOTE]
-> As of version 1.1.1, **Packrat** supports both **Tasks**' traditional emojis _and_ Dataview-format inline fields.
-
 While [Obsidian.md](https://obsidian.md/) provides basic support for Markdown-style tasks contained within a vault's note files, the amazing and (for many) indispensable [Tasks](https://github.com/schemar/obsidian-tasks) plugin -- originally created by [Martin Schenck](https://github.com/schemar) and now maintained by [Clare Macrae](https://github.com/claremacrae) -- considerably increases those capabilities.
 
 For example, recurrence rules can be used such that, when **Tasks** is used to mark a task that includes such a rule as having been completed, it inserts the next instance of that task in a new line either above (or, if the user prefers, below) the just-completed instance of the task.
@@ -109,8 +104,7 @@ would have been moved to the bottom of the designated archive file, and the four
 
 ## Installation
 
-**Packrat** can now be installed via the *Community Plugins* option within **Obsidian**'s *Settings* tab.
+<!-- **Packrat** can now be installed via the *Community Plugins* option within **Obsidian**'s *Settings* tab. -->
 
 |> [!WARNING]
  > **Packrat** is unlikely to do anything useful if you aren't using the **Tasks** plugin in your **Obsidian** vault
-
