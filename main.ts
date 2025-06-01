@@ -62,7 +62,7 @@ export default class PackratPlugin extends Plugin {
 
 		try {
 			const { vault } = this.app;
-			const rruleSignifier = "🔁".normalize();
+			const rruleSignifier = "\u{1F501}".normalize();
 			const dv_rruleSignifier = "[repeat::";
 			const deleteTrigger = this.settings.deletion_trigger;
 			const archiveTrigger = this.settings.archive_trigger;
