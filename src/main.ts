@@ -3,7 +3,7 @@ import { PackratSettings, DEFAULT_SETTINGS } from "./settingsData";
 import { PackratSettingTab } from "./settingsTab";
 
 export default class PackratPlugin extends Plugin {
-	settings: PackratSettings;
+	settings!: PackratSettings;
 
 	async onload() {
 		console.log("Packrat: Loading...");
@@ -59,8 +59,10 @@ export default class PackratPlugin extends Plugin {
 			const archiveFilename = this.settings.archive_filepath;
 
 			// Create or get the archive file
-			const archiveFile =
-				vault.getAbstractFileByPath(archiveFilename) || (await vault.create(archiveFilename, ""));
+			let archiveFile = vault.getAbstractFileByPath(archiveFilename);
+			if (!archiveFile) {
+				archiveFile = await vault.create(archiveFilename, "");
+			}
 			if (!(archiveFile instanceof TFile)) {
 				const msg = "Problem with Archive filename. (Maybe a directory?)";
 				new Notice(msg);
