@@ -1,5 +1,3 @@
-import { PluginSettingTab } from 'obsidian';
-
 export interface PackratSettings {
 	deletion_trigger: string;
 	bottom_trigger: string;
@@ -14,4 +12,4 @@ export const DEFAULT_SETTINGS: PackratSettings = {
 	archive_trigger: 'done_log',
 	archive_filepath: 'archive.md',
 	trigger_comment_style: '%% {trigger} %%',
-}
+};
