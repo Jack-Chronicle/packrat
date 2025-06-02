@@ -1,36 +1,14 @@
-# misc
-ignore
-
-# other cruft
-.editorconfig
-.eslintignore
-.eslintrc.js
-.npmrc
-# esbuild.config.mjs
-package-lock.json
-tsconfig.json
-version-bump.mjs
-
-# vscode
-.vscode 
-
-# Intellij
+# Editor/project files
+.vscode/
+.idea/
 *.iml
-.idea
 
-# npm
-node_modules
-
-# Don't include the compiled main.js file in the repo.
-# They should be uploaded to GitHub releases instead.
+# Build output
 main.js
+main.js.map
 
-# Exclude sourcemaps
-*.map
-
-# obsidian
-data.json
-
-# Exclude macOS Finder (System Explorer) View States
+# System files
 .DS_Store
+
+# Coverage
 /coverage/
