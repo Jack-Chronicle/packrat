@@ -22,7 +22,7 @@ All that's required is the addition, within each recurring task on which you wan
 
 ## Default "triggers"
 
-The *default* "trigger" for each **Packrat** action takes the form of an *html comment* (text surrounded by a two pairs of % characters):
+The *default* "trigger" for each **Packrat** action takes the form of an *html comment* (text surrounded by a double pair of % characters):
 
 | Default trigger | Action on completed recurring task instance     |
 |-----------------|------------------------------------------------ |

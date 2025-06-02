@@ -5,19 +5,13 @@ import { PackratSettings } from "./settingsData";
 export class PackratSettingTab extends PluginSettingTab {
 	plugin: PackratPlugin;
 
-	public defaultDeletionTrigger = "%%done_del%%";
-	public defaultBottomTrigger = "%%done_end%%";
-	public defaultArchiveTrigger = "%%done_log%%";
-	public defaultArchiveFilepath = "archive.md";
-	public defaultTriggerCommentStyle = "%% {trigger} %%";
-
 	constructor(app: App, plugin: PackratPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
 
 	display(): void {
-		const { containerEl } = this;
+		const containerEl = (this as any).containerEl;
 		containerEl.empty();
 		containerEl.createEl("h2", { text: "Packrat plugin settings" });
 
@@ -31,7 +25,7 @@ export class PackratSettingTab extends PluginSettingTab {
 		const previewDiv = containerEl.createDiv({ cls: "packrat-settings-info" });
 		const updatePreview = () => {
 			previewDiv.empty();
-			const style = this.plugin.settings.trigger_comment_style || "%% {trigger} %%";
+			const style = this.plugin.settings.trigger_comment_style || '%% {trigger} %%';
 			previewDiv.createEl("div", { text: "Preview of your triggers:" });
 			const ul = previewDiv.createEl("ul");
 			ul.createEl("li", {
@@ -50,11 +44,11 @@ export class PackratSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Trigger Comment Style")
 			.setDesc('Template for triggers. Use {trigger} as placeholder (e.g. "%% {trigger} %%").')
-			.addText(text =>
+			.addText((text: any) =>
 				text
 					.setPlaceholder('%% {trigger} %%')
 					.setValue(this.plugin.settings.trigger_comment_style)
-					.onChange(async (value) => {
+					.onChange(async (value: string) => {
 						this.plugin.settings.trigger_comment_style = value || '%% {trigger} %%';
 						await this.plugin.saveSettings();
 						updatePreview(); // Just update preview, don't re-render all
@@ -65,11 +59,11 @@ export class PackratSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Deletion trigger")
 			.setDesc("Trigger keyword, e.g., 'done_del'")
-			.addText((text) =>
+			.addText((text: any) =>
 				text
 					.setPlaceholder("done_del")
 					.setValue(this.plugin.settings.deletion_trigger)
-					.onChange(async (value) => {
+					.onChange(async (value: string) => {
 						this.plugin.settings.deletion_trigger = value;
 						await this.plugin.saveSettings();
 						updatePreview();
@@ -78,13 +72,13 @@ export class PackratSettingTab extends PluginSettingTab {
 
 		// ------- Move to end trigger -------
 		new Setting(containerEl)
-			.setName('"Move to end of file" trigger')
+			.setName('Move to end of file trigger')
 			.setDesc("Trigger keyword, e.g., 'done_end'")
-			.addText((text) =>
+			.addText((text: any) =>
 				text
 					.setPlaceholder("done_end")
 					.setValue(this.plugin.settings.bottom_trigger)
-					.onChange(async (value) => {
+					.onChange(async (value: string) => {
 						this.plugin.settings.bottom_trigger = value;
 						await this.plugin.saveSettings();
 						updatePreview();
@@ -95,11 +89,11 @@ export class PackratSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Archive trigger")
 			.setDesc("Trigger keyword, e.g., 'done_log'")
-			.addText((text) =>
+			.addText((text: any) =>
 				text
 					.setPlaceholder("done_log")
 					.setValue(this.plugin.settings.archive_trigger)
-					.onChange(async (value) => {
+					.onChange(async (value: string) => {
 						this.plugin.settings.archive_trigger = value;
 						await this.plugin.saveSettings();
 						updatePreview();
@@ -110,11 +104,11 @@ export class PackratSettingTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Archive file")
 			.setDesc('Relative filepath to archive file (include ".md" extension)')
-			.addText((text) =>
+			.addText((text: any) =>
 				text
 					.setPlaceholder("archive.md")
 					.setValue(this.plugin.settings.archive_filepath)
-					.onChange(async (value) => {
+					.onChange(async (value: string) => {
 						this.plugin.settings.archive_filepath = value;
 						await this.plugin.saveSettings();
 					})
