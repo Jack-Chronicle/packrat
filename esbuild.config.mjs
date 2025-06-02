@@ -18,11 +18,31 @@ const options = {
 
 if (process.argv.includes('--watch')) {
   // Watch mode: rebuild on file changes
-  const ctx = await context(options);
+  const ctx = await context({
+    ...options,
+    plugins: [
+      {
+        name: 'log-rebuild',
+        setup(build) {
+          build.onEnd(result => {
+            if (result.errors.length === 0) {
+              console.log('main.js rebuilt at', new Date().toLocaleTimeString());
+            } else {
+              console.log('Build failed:', result.errors);
+            }
+          });
+        }
+      }
+    ]
+  });
   await ctx.watch();
   console.log("Watching for changes...");
-  // Prevent script from exiting
+  // Keep process alive and listen for SIGINT to exit cleanly
   process.stdin.resume();
+  process.on('SIGINT', () => {
+    ctx.dispose();
+    process.exit(0);
+  });
 } else {
   // One-off build
   await build(options);
